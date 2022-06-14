@@ -1,3 +1,6 @@
+import os
+
+
 def top_menu(): # Верхняя граница меню
     print('*' *40, '\n' *2)
 
@@ -60,6 +63,17 @@ def invalid_menu_item(error = 'Неверный пункт меню'): # Рам�
     print('\n'* 2)
     print('|-|'* 13, '\n'* 2)
 
+def new_catalog(): # Функция создание папки
+    new_catalog = input('Введите сколько вам папок нужно: ')
+    catalog = int(new_catalog)
+    name_catalog = input('Ведите название папки: ')
+    for i in range(catalog):
+        if not os.path.exists(f"{name_catalog} {i}"):
+            if i == 0:
+                os.mkdir(f"{name_catalog}")
+            else:
+                os.mkdir(f"{name_catalog} {i}")
+
 while True: # Основное меню
     top_menu()
     
@@ -81,7 +95,7 @@ while True: # Основное меню
     cleaning()
 
     if choice == '1':
-
+        new_catalog()
         cleaning
     elif choice == '2':
         
