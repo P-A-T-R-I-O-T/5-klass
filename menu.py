@@ -27,7 +27,7 @@ while True: # Основное меню
     print('Выход: ')
     menu_selection()
     choice = input('Выберите пункт меню: ')
-    cleaning()
+    #cleaning()
 
     if choice == '1':
         cleaning
