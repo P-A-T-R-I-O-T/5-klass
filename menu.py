@@ -1,5 +1,8 @@
 from invalid_menu import invalid_menu_item
+import os
+import time
 
+num_seconds = 5
 def top_menu(): # Верхняя граница меню
     print('*' *40, '\n' *2)
 
@@ -8,6 +11,16 @@ def menu_selection(): #Выделение пунктов меню
 
 def cleaning(): # Очистка терминала
     print('\n' * 40)
+
+def new_catalog(): # Функция создание папки
+    new_catalog = input('Введите сколько вам папок нужно: ')
+    catalog = int(new_catalog)
+    name_catalog = input('Ведите название папки: ')
+    for i in range(catalog):
+        if not os.path.exists(f"{name_catalog}{i}"):
+            os.mkdir(f"{name_catalog}")
+        else:
+            invalid_menu_item('Такие папки уже существуют')
   
 while True: # Основное меню
     top_menu()
@@ -27,11 +40,11 @@ while True: # Основное меню
     print('Выход: ')
     menu_selection()
     choice = input('Выберите пункт меню: ')
-    #cleaning()
+    cleaning()
 
     if choice == '1':
         cleaning
-
+        new_catalog()
     elif choice == '2':        
         cleaning
 
@@ -67,4 +80,5 @@ while True: # Основное меню
         
     else:
         invalid_menu_item()
+        time.sleep(num_seconds)
         #Пока конечный вариант. Теперь нужно выполнять задание
