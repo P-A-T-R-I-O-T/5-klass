@@ -14,6 +14,7 @@ def invalid_menu_item(error = 'Неверный пункт меню'): # Рам�
     border = '|-|' 
     print(border * 13)    # Печатаем верхнюю рамки
     len(border +indent * 33 + border)
+    print(border + indent * 33 + border)
     
     if len(error) >= 37: # В случаи когда главный параметр больше максимального значения, выравниваем по центру рамки
         if len(border + indent + error_1 + indent_2 + border) < 39:
@@ -49,4 +50,3 @@ def invalid_menu_item(error = 'Неверный пункт меню'): # Рам�
     print(border * 13)
     #print('|-|', indent * 31, '|-|')
     print('\n'* 2)
-    print('|-|'* 13, '\n'* 2)

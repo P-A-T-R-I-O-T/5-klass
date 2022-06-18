@@ -30,38 +30,41 @@ while True: # Основное меню
     cleaning()
 
     if choice == '1':
+        cleaning
 
+    elif choice == '2':        
         cleaning
-    elif choice == '2':
-        
+
+    elif choice == '3':        
         cleaning
-    elif choice == '3':
-        
+
+    elif choice == '4':    
         cleaning
-    elif choice == '4':
-        
+
+    elif choice == '5':        
         cleaning
-    elif choice == '5':
-        
+
+    elif choice == '6':        
         cleaning
-    elif choice == '6':
-        
+
+    elif choice == '7':        
         cleaning
-    elif choice == '7':
-        
+
+    elif choice == '8':        
         cleaning
-    elif choice == '8':
-        
+
+    elif choice == '9':      
         cleaning
-    elif choice == '9':
-        
+
+    elif choice == '10':   
         cleaning
-    elif choice == '10':
-        
-        cleaning
+
     elif choice == '11':
         cleaning
+
+    elif choice == '12':
+        cleaning
+        
     else:
         invalid_menu_item()
-        print(len('|-|'* 13))
-        #Покуа конечный вариант. Теперь нужно выполнять задание
+        #Пока конечный вариант. Теперь нужно выполнять задание
