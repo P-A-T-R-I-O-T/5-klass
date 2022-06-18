@@ -69,10 +69,9 @@ def new_catalog(): # Функция создание папки
     name_catalog = input('Ведите название папки: ')
     for i in range(catalog):
         if not os.path.exists(f"{name_catalog} {i}"):
-            if i == 0:
-                os.mkdir(f"{name_catalog}")
-            else:
-                os.mkdir(f"{name_catalog} {i}")
+            os.mkdir(f"{name_catalog}")
+        else:
+            invalid_menu_item('Такие папки уже существуют')
 
 while True: # Основное меню
     top_menu()
