@@ -1,6 +1,5 @@
 from invalid_menu import invalid_menu_item
-import os
-import time
+import os, shutil
 
 num_seconds = 3
 def top_menu(): # Верхняя граница меню
@@ -22,6 +21,7 @@ def new_catalog(): # Функция создание папки
             cleaning()
             invalid_menu_item('Такие папки уже существуют')
             break
+    
 
 def delete_file():
     # Если количество папок введёного больше, чем существует, он всё ровно удалит и напишен сообщение
@@ -34,7 +34,12 @@ def delete_file():
             cleaning()
             invalid_menu_item('Таких папок нет и не было')
             break
-  
+
+def copy():
+    name_copy = input('Введите название файла/папки которые нужно скопировать')
+    name_directory = input('Ведите место для копирования')
+    shutil.copy(name_copy, name_directory)
+    
 while True: # Основное меню
     top_menu()
     
