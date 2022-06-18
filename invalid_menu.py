@@ -1,3 +1,5 @@
+import time
+num_seconds = 3
 def invalid_menu_item(error = 'Неверный пункт меню'): # Рамка: Неверного пункт меню
     indent = ' '
     indent_2 = ' '
@@ -50,3 +52,4 @@ def invalid_menu_item(error = 'Неверный пункт меню'): # Рам�
     print(border * 13)
     #print('|-|', indent * 31, '|-|')
     print('\n'* 2)
+    time.sleep(num_seconds)
