@@ -1,6 +1,5 @@
 from invalid_menu import invalid_menu_item
 import os
-import time
 
 num_seconds = 3
 def top_menu(): # Верхняя граница меню
@@ -25,6 +24,8 @@ def new_catalog(): # Функция создание папки
 
 def delete_file():
     # Если количество папок введёного больше, чем существует, он всё ровно удалит и напишен сообщение
+    invalid_menu_item('Задайте ровно то количество пакок которое нужно удалить', 5)
+    invalid_menu_item('повторного удаление не будет!')
     catalog = int(input('Введите сколько папок нужно удалить: '))
     delet_catalog = input('Ведите название папки: ')
     for i in range(catalog):
