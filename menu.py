@@ -40,6 +40,8 @@ def delete_file():
             break
 
 def copy():
+    print('У вас есть:\n')
+    print(os.listdir(),'\n')
     name_copy = input('Введите название файла/папки которые нужно скопировать')
     name_directory = input('Ведите место для копирования')
     shutil.copy(name_copy, name_directory)
@@ -73,6 +75,7 @@ while True: # Основное меню
 
     elif choice == '3':    
         cleaning
+        copy()
 
     elif choice == '4':    
         cleaning
