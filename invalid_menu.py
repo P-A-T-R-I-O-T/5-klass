@@ -1,5 +1,5 @@
 import time
-def invalid_menu_item(error = 'Неверный пункт меню', num_seconds = 3): # Рамка: Неверного пункт меню
+def invalid_menu_item(error = 'Неверный пункт меню', num_seconds = 3 ): # Рамка: Неверного пункт меню
     indent = ' '
     indent_2 = ' '
     if len(error) >= 37: # Работа с длинными предупреждениями
