@@ -1,6 +1,7 @@
 from invalid_menu import invalid_menu_item
 import os, shutil
 import os
+import time
 
 
 num_seconds = 3
@@ -40,11 +41,27 @@ def delete_file():
             break
 
 def copy():
+    print('Вы находитесь здесь:')
+    print(os.getcwd())
     print('У вас есть:\n')
     print(os.listdir(),'\n')
-    name_copy = input('Введите название файла/папки которые нужно скопировать')
-    name_directory = input('Ведите место для копирования')
-    shutil.copy(name_copy, name_directory)
+    name_fail_direct = input('Введите название файла/папки которые нужно скопировать \n')
+    fail_direct_copy = name_fail_direct + '_копия'
+    shutil.copy(name_fail_direct, fail_direct_copy)
+
+def view_working_directory():
+    print('У вас есть:\n')
+    print(os.listdir(),'\n')
+    time.sleep(6)
+    cleaning
+
+def attached_directory():
+    for something in os.listdir():
+        if os.path.isdir(something):
+            print(something)
+    time.sleep(6)
+    cleaning
+
     
 while True: # Основное меню
     top_menu()
@@ -52,7 +69,7 @@ while True: # Основное меню
     print('Главное меню\n')
     print('1. создать папку: ')
     print('2. удалить (файл/папку): ')
-    print('3. копировать (файл/папку): ')
+    print('3. копировать файл: ')
     print('4. просмотр содержимого рабочей директории: ')
     print('5. посмотреть только папки: ')
     print('6. посмотреть только файлы: ')
@@ -77,14 +94,16 @@ while True: # Основное меню
         cleaning
         copy()
 
-    elif choice == '4':    
+    elif choice == '4':   
         cleaning
+        view_working_directory()
 
     elif choice == '5':        
         cleaning
 
     elif choice == '6':        
         cleaning
+        attached_directory()
 
     elif choice == '7':        
         cleaning
