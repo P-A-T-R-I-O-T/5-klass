@@ -62,6 +62,12 @@ def attached_directory():
     time.sleep(6)
     cleaning
 
+def attached_file():
+    for something in os.listdir():
+        if not os.path.isdir(something):
+            print(something)
+    time.sleep(6)
+    cleaning
     
 while True: # Основное меню
     top_menu()
@@ -100,6 +106,7 @@ while True: # Основное меню
 
     elif choice == '5':        
         cleaning
+        attached_file()
 
     elif choice == '6':        
         cleaning
