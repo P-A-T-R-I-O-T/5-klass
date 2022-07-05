@@ -1,7 +1,5 @@
 from invalid_menu import invalid_menu_item
-import os, shutil
-import os
-import time
+import os, shutil, time, sys, platform
 
 
 num_seconds = 3
@@ -19,35 +17,34 @@ def new_catalog(): # Функция создание папки
     name_catalog = input('Ведите название папки: ')
     for i in range(catalog):
         if not os.path.exists(f"{name_catalog}{i}"):
-            os.mkdir(f"{name_catalog}{i}")
+            if i == 0:
+                os.mkdir(f"{name_catalog}")
+            if i > 0:
+                os.mkdir(f"{name_catalog}{i}")
+            if i == catalog:
+                os.rmdir(f"{name_catalog}{i}")
         else:
             cleaning()
             invalid_menu_item('Такие папки уже существуют')
             break
     
 
-def delete_file():
-    # Если количество папок введёного больше, чем существует, он всё ровно удалит и напишен сообщение
-    invalid_menu_item('Задайте ровно то количество пакок которое нужно удалить', 5)
-    invalid_menu_item('повторного удаление не будет!')
-    catalog = int(input('Введите сколько папок нужно удалить: '))
+def delete_file():  
     delet_catalog = input('Ведите название папки: ')
-    for i in range(catalog):
-        if os.path.exists(f"{delet_catalog}{i}"):
-            os.rmdir(f"{delet_catalog}{i}")
-        else:
-            cleaning()
-            invalid_menu_item('Таких папок нет и не было')
-            break
+    if os.path.exists(f"{delet_catalog}"):
+        os.rmdir(f"{delet_catalog}")
+    else:
+        cleaning()
+        invalid_menu_item('Таких папок нет и не было')
 
 def copy():
-    print('Вы находитесь здесь:')
-    print(os.getcwd())
-    print('У вас есть:\n')
-    print(os.listdir(),'\n')
-    name_fail_direct = input('Введите название файла/папки которые нужно скопировать \n')
-    fail_direct_copy = name_fail_direct + '_копия'
-    shutil.copy(name_fail_direct, fail_direct_copy)
+    name_fail_direct = input('Введите название папки которые нужно скопировать \n')
+    if os.path.exists(f"{name_fail_direct}"):
+        fail_direct_copy = input('Введите название папки которое будет копией \n')
+        shutil.copytree(name_fail_direct, fail_direct_copy)
+    else:
+        cleaning()
+        invalid_menu_item('Такой папки нет!', 3)
 
 def view_working_directory():
     print('У вас есть:\n')
@@ -59,16 +56,28 @@ def attached_directory():
     for something in os.listdir():
         if os.path.isdir(something):
             print(something)
-    time.sleep(6)
+    time.sleep(3)
     cleaning
 
 def attached_file():
     for something in os.listdir():
         if not os.path.isdir(something):
             print(something)
-    time.sleep(6)
+    time.sleep(3)
     cleaning
+
+def operating_system():
+    print('Имя операционной системы: ' ,platform.system() ,platform.release())
+    print('Информации об архитектуре:' , platform.architecture())
+    print('ведения о базовой платформе:' ,platform.platform())
+    print('Реальное имя процессора:',platform.processor())
+    print('Тип машины: ' , platform.machine())
+    print('Сетевое имя компьютера:' , platform.node())
+    time.sleep(11)
     
+def creator_program():
+    print('Эту программу создал: Колесов Константин 1985 года рождения')
+
 while True: # Основное меню
     top_menu()
     
@@ -91,7 +100,8 @@ while True: # Основное меню
 
     if choice == '1':
         cleaning
-        new_catalog()       
+        new_catalog()
+
     elif choice == '2':    
         cleaning
         delete_file()
@@ -106,16 +116,19 @@ while True: # Основное меню
 
     elif choice == '5':        
         cleaning
-        attached_file()
+        attached_directory()
 
     elif choice == '6':        
         cleaning
-        attached_directory()
+        attached_file()
+        
 
-    elif choice == '7':        
+    elif choice == '7':
+        operating_system()       
         cleaning
 
-    elif choice == '8':        
+    elif choice == '8': 
+        creator_program()       
         cleaning
 
     elif choice == '9':      
