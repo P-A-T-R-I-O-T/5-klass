@@ -1,5 +1,5 @@
 from invalid_menu import invalid_menu_item
-import os, shutil, time, sys, platform
+import os, shutil, time, platform, time
 
 
 num_seconds = 3
@@ -76,7 +76,7 @@ def operating_system():
     time.sleep(11)
     
 def creator_program():
-    print('Эту программу создал: Колесов Константин 1985 года рождения')
+    print('Эту программу создал: Колесов Константин 1985 года рождения ')
 
 while True: # Основное меню
     top_menu()
@@ -92,8 +92,7 @@ while True: # Основное меню
     print('8. создатель программы: ')
     print('9. играть в викторину: ')
     print('10. мой банковский счет: ')
-    print('11. смена рабочей директории: ')
-    print('Выход: ')
+    print('11. Выход ')
     menu_selection()
     choice = input('Выберите пункт меню: ')
     cleaning()
@@ -124,24 +123,28 @@ while True: # Основное меню
         
 
     elif choice == '7':
-        operating_system()       
         cleaning
+        operating_system()       
+        
 
     elif choice == '8': 
-        creator_program()       
         cleaning
+        creator_program()
 
     elif choice == '9':      
         cleaning
+        from victory import *
+        print('\n')
+        time.sleep(3)
 
     elif choice == '10':   
         cleaning
+        from use_functions import *  # * обозначает что все модули нужно запускать
+        
 
     elif choice == '11':
-        cleaning
+        break
 
-    elif choice == '12':
-        cleaning
         
     else:
         invalid_menu_item()
