@@ -138,9 +138,11 @@ def history(cash):
         print('Ваша история покупок')
         menu_selection()
         for name, amount in cash:
-            print(f'> {name} :  {amount}')
-            input('\nНажмите Enter чтобы продолжить ')
-            cleaning()        
+            h = (f'> {name} :  {amount}')
+            print(filter(q, h))
+        #print (h)
+            #input('\nНажмите Enter чтобы продолжить ')
+            #cleaning()        
 def menu():
     cash = [] # Деньги
     while True: # Основное меню
