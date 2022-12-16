@@ -27,45 +27,8 @@
 При выполнении задания можно пользоваться любыми средствами
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
-def no_histori(): #Рамака: Нет истории покупок
-    print('|-|'* 13)
-    print('|-|', ' ' * 31, '|-|')
-    print('|-|', ' '*2, 'У Вас нет истории покупок!', ' '*1, '|-|')
-    print('|-|', ' ' * 31, '|-|')
-    print('|-|'* 13, '\n'*2)
+from invalid_menu import invalid_menu_item, cleaning
 
-def no_cash(): # Рамка не хватает средств
-    print('|-|'* 13)
-    print('|-|', ' ' * 31, '|-|')
-    print('|-|', ' '*3, 'У Вас не хватает денег!', ' '*3, '|-|')
-    print('|-|', ' '*4, 'Пополните свой баланс', ' '*4, '|-|')
-    print('|-|', ' ' * 31, '|-|')
-    print('|-|'* 13, '\n'*2)
-
-def no_price(): # Рамка: не корректной цены товара
-    print('|-|'* 15)
-    print('|-|', ' ' * 37, '|-|')
-    print('|-|', ' '*2, 'Не корректная стоимость товара!', ' '*2, '|-|')
-    print('|-|', ' ' * 37, '|-|')
-    print('|-|'* 15, '\n'*2)
-
-def insufficient_funds (): # Рамка: не хватает средств
-    print('|-|'* 13)
-    print('|-|', ' ' * 31, '|-|')
-    print('|-|', ' '*2, 'У Вас не хватает средств!', ' '*2, '|-|')
-    print('|-|', ' '*3, 'Пополните свой баланс!', ' '*4, '|-|')
-    print('|-|', ' ' * 31, '|-|')
-    print('|-|'* 13, '\n'*2)
-
-def invalid_menu_item(): # Рамка: Неверного пункт меню
-    print('|-|'* 13)
-    print('|-|', ' ' * 31, '|-|')
-    print('|-|', ' '*5, 'Неверный пункт меню', ' '*5, '|-|')
-    print('|-|', ' ' * 31, '|-|')
-    print('|-|'* 13, '\n'*2)
-
-def cleaning(): # Очистка терминала
-    print('\n' * 40)
 
 def menu_selection(): #Выделение пунктов меню
     print('.'*30, '\n' *2)
@@ -73,12 +36,6 @@ def menu_selection(): #Выделение пунктов меню
 def top_menu(): # Верхняя граница меню
     print('*' *30, '\n' *2)
 
-def incorrect_amount(): # Рамка: Не корректной суммы пополнения
-    print('|-|'* 19)
-    print('|-|', ' ' * 49, '|-|')
-    print('|-|', ' '*5, 'Не корректная сумма пополнения счёта!', ' '*5, '|-|')
-    print('|-|', ' ' * 49, '|-|')
-    print('|-|'* 19, '\n' *3)
 
 def replenishment_of_funds(cash): # 1_меню (пополнение счёта)
     top_menu()
@@ -88,7 +45,7 @@ def replenishment_of_funds(cash): # 1_меню (пополнение счёта)
     cleaning()
     while not amount.isdecimal() or not int(amount)>0:
         cleaning()
-        incorrect_amount()
+        invalid_menu_item('Не корректная сумма пополнения счёта!')
         top_menu()
         print('Меню пополнение счёта')
         menu_selection()
@@ -99,7 +56,7 @@ def replenishment_of_funds(cash): # 1_меню (пополнение счёта)
 def purchase(cash): # 2_Меню (Покупка)
     personal_cash = sum([trans[1] for trans in cash])
     if personal_cash == 0:
-        insufficient_funds ()
+        invalid_menu_item('У Вас не хватает средств! Пополните свой баланс!')
     else:
         top_menu()
         print('Произведите покупку')
@@ -108,7 +65,7 @@ def purchase(cash): # 2_Меню (Покупка)
         cleaning()
         while not amount.isdecimal() or int(amount)< 1:
             cleaning()
-            no_price()
+            invalid_menu_item('Не корректная стоимость товара!')
             top_menu()
             print('Произведите покупку')
             menu_selection()
@@ -124,15 +81,12 @@ def purchase(cash): # 2_Меню (Покупка)
             cash.append(('Покупка ' + name_product, -int(amount)))
         else:
             cleaning()
-            no_cash()
+            invalid_menu_item('У Вас не хватает денег! Пополните свой баланс')
 
 def history(cash):
     cleaning()
-    #top_menu()
-    #print('Ваша история покупок')
-    #menu_selection()
     if len(cash) == 0:
-        no_histori()
+        invalid_menu_item('У Вас нет истории покупок!')
     else:
         top_menu()
         print('Ваша история покупок')
@@ -168,6 +122,6 @@ def menu():
         elif choice == '4':
             break
         else:
-            invalid_menu_item()
+            invalid_menu_item('Неверный пункт меню')
 
 menu()

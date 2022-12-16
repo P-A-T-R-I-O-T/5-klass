@@ -1,4 +1,8 @@
-import time
+import time, os
+
+def cleaning (): # Очистка терминала
+    os.system('cls' if os.name == 'nt' else 'clear')
+    #lambda: os.system('kls') Для windows
 def invalid_menu_item(error = 'Неверный пункт меню', num_seconds = 3 ): # Рамка: Неверного пункт меню
     indent = ' '
     indent_2 = ' '
@@ -27,8 +31,7 @@ def invalid_menu_item(error = 'Неверный пункт меню', num_second
             print(border + indent + error_1 + indent_2 + border)
             indent = ' '
             indent_2 = ' '
-        #else:
-        #    print(border, indent, error_1, indent_2, border)
+
         if len(border + indent + error_2 + indent_2 + border) < 39:
             while len(border + indent + error_2 + indent_2 + border) <= 38:
                 indent += ' '
@@ -49,6 +52,6 @@ def invalid_menu_item(error = 'Неверный пункт меню', num_second
     indent = ' '
     print(border + indent * 33 + border)
     print(border * 13)
-    #print('|-|', indent * 31, '|-|')
     print('\n'* 2)
     time.sleep(num_seconds)
+    cleaning()
