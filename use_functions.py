@@ -86,29 +86,21 @@ def purchase(cash): # 2_Меню (Покупка)
 
 def history(cash):
     cleaning()
+    if len(cash) == 0:
+        invalid_menu_item('У Вас нет истории')
+    else:
+        top_menu()
+        print('Ваша история покупок')
+        menu_selection()
+        for name, amount in cash:
+            print(f'> {name} :  {amount}')
+            input('\nНажмите Enter чтобы продолжить ')
+            cleaning()
+def menu():
+    cash = [] # Деньги
     if os.path.exists(HISORY_FILE):
         with open(HISORY_FILE, 'rb') as f:
             cash = pickle.load(f)
-            top_menu()
-            print('Ваша история покупок')
-            menu_selection()
-            for name, amount in cash:
-                print(f'> {name} :  {amount}')
-                input('\nНажмите Enter чтобы продолжить ')
-                cleaning()
-    else:
-        if len(cash) == 0:
-            invalid_menu_item('У Вас нет истории покупок!')
-        else:
-            top_menu()
-            print('Ваша история покупок')
-            menu_selection()
-            for name, amount in cash:
-                print(f'> {name} :  {amount}')
-                input('\nНажмите Enter чтобы продолжить ')
-                cleaning()
-def menu():
-    cash = [] # Деньги
     while True: # Основное меню
         top_menu()
         personal_cash = sum([trans[1] for trans in cash])
@@ -117,7 +109,8 @@ def menu():
         print('1. пополнение счета: ')
         print('2. покупка: ')
         print('3. история покупок: ')
-        print('4. выход из программы ')
+        print('4. сохранить историю')
+        print('5. выход из программы ')
         menu_selection()
         choice = input('Выберите пункт меню:  ')
         cleaning()
@@ -134,6 +127,7 @@ def menu():
         elif choice == '4':
             with open(HISORY_FILE, 'wb') as f:
                 pickle.dump(cash, f)
+        elif choice == '5':
             break
         else:
             invalid_menu_item('Неверный пункт меню')
