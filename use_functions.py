@@ -1,23 +1,36 @@
 """
-В файл нужно записать переменные:
-    personal_cash (сколько денег на считу)
-    amount  (не посредственно деньги)
-    name назхвание товара
+МОДУЛЬ 3
+Программа "Личный счет"
+Описание работы программы:
+Пользователь запускает программу у него на счету 0
+Программа предлагает следующие варианты действий
+1. пополнить счет
+2. покупка
+3. история покупок
+4. выход
+1. пополнение счета
+при выборе этого пункта пользователю предлагается ввести сумму на сколько пополнить счет
+после того как пользователь вводит сумму она добавляется к счету
+снова попадаем в основное меню
+2. покупка
+при выборе этого пункта пользователю предлагается ввести сумму покупки
+если она больше количества денег на счете, то сообщаем что денег не хватает и переходим в основное меню
+если денег достаточно предлагаем пользователю ввести название покупки, например (еда)
+снимаем деньги со счета
+сохраняем покупку в историю
+выходим в основное меню
+3. история покупок
+выводим историю покупок пользователя (название и сумму)
+возвращаемся в основное меню
+4. выход
+выход из программы
+При выполнении задания можно пользоваться любыми средствами
+Для реализации основного меню можно использовать пример ниже или написать свой
 """
-import pickle, os
 from invalid_menu import invalid_menu_item, cleaning
+import os, pickle
 
-BALANSE = 'balanse.data'
-FILE_NAME = 'purchase_history.data'
-
-if os.path.exists(BALANSE):
-    with open(BALANSE, 'rb') as f:
-        balanse = pickle.load(f)
-
-if os.path.exists(FILE_NAME):
-    with open(FILE_NAME, 'rb') as f:
-        cash = pickle.load(f)
-
+HISORY_FILE = 'history_file'
 def menu_selection(): #Выделение пунктов меню
     print('.'*30, '\n' *2)
 
@@ -73,35 +86,38 @@ def purchase(cash): # 2_Меню (Покупка)
 
 def history(cash):
     cleaning()
-    if len(cash) == 0:
-        invalid_menu_item('У Вас нет истории покупок!')
+    if os.path.exists(HISORY_FILE):
+        with open(HISORY_FILE, 'rb') as f:
+            cash = pickle.load(f)
+            top_menu()
+            print('Ваша история покупок')
+            menu_selection()
+            for name, amount in cash:
+                print(f'> {name} :  {amount}')
+                input('\nНажмите Enter чтобы продолжить ')
+                cleaning()
     else:
-        top_menu()
-        print('Ваша история покупок')
-        menu_selection()
-        for name, amount in cash:
-            print(f'> {name} :  {amount}')
-            input('\nНажмите Enter чтобы продолжить ')
-            cleaning()        
+        if len(cash) == 0:
+            invalid_menu_item('У Вас нет истории покупок!')
+        else:
+            top_menu()
+            print('Ваша история покупок')
+            menu_selection()
+            for name, amount in cash:
+                print(f'> {name} :  {amount}')
+                input('\nНажмите Enter чтобы продолжить ')
+                cleaning()
 def menu():
     cash = [] # Деньги
     while True: # Основное меню
         top_menu()
-        if os.path.exists(BALANSE):
-            if balanse == 0:
-                personal_cash = sum([trans[1] for trans in cash])
-                print('Ваши средства:', personal_cash, '\n')
-            else:
-                print('Ваши средства:', balanse, '\n')
-        else:
-            personal_cash = sum([trans[1] for trans in cash])
-            print('Ваши средства:', personal_cash, '\n')
+        personal_cash = sum([trans[1] for trans in cash])
+        print('Ваши средства:', personal_cash, '\n')
         print('Главное меню')
         print('1. пополнение счета: ')
         print('2. покупка: ')
         print('3. история покупок: ')
-        print('4. сохранить историю')
-        print('5. выход из программы ')
+        print('4. выход из программы ')
         menu_selection()
         choice = input('Выберите пункт меню:  ')
         cleaning()
@@ -116,11 +132,8 @@ def menu():
             history(cash)
             pass
         elif choice == '4':
-            with open(FILE_NAME, 'wb') as f:
+            with open(HISORY_FILE, 'wb') as f:
                 pickle.dump(cash, f)
-        elif choice == '5':
-            with open(BALANSE, 'wb') as f:
-                pickle.dump(personal_cash, f)
             break
         else:
             invalid_menu_item('Неверный пункт меню')
