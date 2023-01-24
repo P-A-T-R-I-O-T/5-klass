@@ -1,8 +1,8 @@
 import time, os
 
 def cleaning (): # Очистка терминала
-    os.system('cls' if os.name == 'nt' else 'clear')
-    #lambda: os.system('kls') Для windows
+    # os.system('cls' if os.name == 'nt' else 'clear') # Почему-то выходит строчка: TERM environment variable not set
+    print('\n' * 100)
 def invalid_menu_item(error = 'Неверный пункт меню', num_seconds = 3 ): # Рамка: Неверного пункт меню
     indent = ' '
     indent_2 = ' '
