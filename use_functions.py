@@ -28,6 +28,7 @@
 Для реализации основного меню можно использовать пример ниже или написать свой
 """
 from invalid_menu import invalid_menu_item, cleaning
+from decorator import border_siporaters
 import os, pickle
 
 HISORY_FILE = 'history_file'
@@ -96,6 +97,7 @@ def history(cash):
             print(f'> {name} :  {amount}')
             input('\nНажмите Enter чтобы продолжить ')
             cleaning()
+@border_siporaters
 def menu():
     cash = [] # Деньги
     if os.path.exists(HISORY_FILE):
@@ -127,6 +129,7 @@ def menu():
         elif choice == '4':
             with open(HISORY_FILE, 'wb') as f:
                 pickle.dump(cash, f)
+            pass
         elif choice == '5':
             break
         else:
