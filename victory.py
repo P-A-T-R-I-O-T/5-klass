@@ -1,3 +1,4 @@
+from invalid_menu import invalid_menu_item
 import random
 numbers = [
     ('Александр Сергеевич Пушкин', '6.6.1799'),
@@ -37,19 +38,19 @@ while victory_play.lower() == 'да':
     mistakes_count = 0
     for name, birthdate in result:
         answer = input(f'Какая дата рождения у {name}?' '\n')
-        if answer!=birthdate:
+        if answer != birthdate:
             date = birthdate
             print(get_date(date))
             mistakes_count += 1
     right_answers_count = len(result)-mistakes_count
     print(f'Итак, у вас {right_answers_count} правильных ответов и {mistakes_count} неправильных ответов')
     if right_answers_count == 5:
-        print ('Поздравляем Вы ПОБЕДИТЕЛЬ!!!')
+        invalid_menu_item('Поздравляем Вы ПОБЕДИТЕЛЬ!!!')
         break
     elif right_answers_count > 0:
-        print ('Хороший результат, Вы молодец.')
+        invalid_menu_item('Хороший результат, Вы молодец.')
         break
     elif right_answers_count == 0:
-        print ('К сожелению Вы проиграли.')
+        invalid_menu_item('К сожелению Вы проиграли.')
         break
     break
