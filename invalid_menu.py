@@ -1,3 +1,4 @@
+from decorator import border_siporaters
 import time, os
 
 def cleaning (): # Очистка терминала

@@ -1,4 +1,5 @@
 from invalid_menu import invalid_menu_item
+from decorator import border_siporaters
 import random
 numbers = [
     ('Александр Сергеевич Пушкин', '6.6.1799'),
@@ -13,6 +14,7 @@ numbers = [
     ('Айзек Азимов', '4.10.1919')
 ]
 #Дата прописью
+@border_siporaters
 def get_date(date):
     day_list = ['первое', 'второе', 'третье', 'четвёртое',
         'пятое', 'шестое', 'седьмое', 'восьмое',
@@ -31,7 +33,6 @@ def get_date(date):
         date_list[2] + ' года')
 # количество случайных элементов
 result = random.sample(numbers, 5)
-#print(result)
 # Сама викторина
 victory_play = 'да'
 while victory_play.lower() == 'да':
@@ -53,4 +54,3 @@ while victory_play.lower() == 'да':
     elif right_answers_count == 0:
         invalid_menu_item('К сожелению Вы проиграли.')
         break
-    break

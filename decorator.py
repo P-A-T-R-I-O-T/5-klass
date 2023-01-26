@@ -5,7 +5,6 @@ def border_siporaters(f):
     def inner():
         print('*' * 30, '\n' * 2)
         resultat = f()
-        print('.' * 30, '\n' * 2)
         return resultat
 
     return inner

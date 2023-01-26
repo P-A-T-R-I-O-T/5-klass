@@ -38,9 +38,7 @@ def menu_selection(): #Выделение пунктов меню
 def top_menu(): # Верхняя граница меню
     print('*' *30, '\n' *2)
 
-
 def replenishment_of_funds(cash): # 1_меню (пополнение счёта)
-    top_menu()
     print('Меню пополнение счёта')
     menu_selection()
     amount = input('Пополните счёт: ')
@@ -60,7 +58,6 @@ def purchase(cash): # 2_Меню (Покупка)
     if personal_cash == 0:
         invalid_menu_item('У Вас не хватает средств! Пополните свой баланс!')
     else:
-        top_menu()
         print('Произведите покупку')
         menu_selection()
         amount = input('Введите стоимость товара: ')
@@ -104,7 +101,6 @@ def menu():
         with open(HISORY_FILE, 'rb') as f:
             cash = pickle.load(f)
     while True: # Основное меню
-        top_menu()
         personal_cash = sum([trans[1] for trans in cash])
         print('Ваши средства:', personal_cash, '\n')
         print('Главное меню')
