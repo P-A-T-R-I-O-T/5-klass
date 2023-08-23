@@ -1,6 +1,6 @@
 from invalid_menu import invalid_menu_item
 from decorator import border_siporaters
-import os, shutil, time, platform, time
+import os, shutil, platform, time
 
 
 num_seconds = 3
@@ -50,14 +50,14 @@ def view_working_directory():
     print('У вас есть:\n')
     print(os.listdir(),'\n')
     time.sleep(6)
-    cleaning
+    cleaning()
 
 def attached_directory():
     for something in os.listdir():
         if os.path.isdir(something):
             print(something)
     time.sleep(3)
-    cleaning
+    cleaning()
 
 def attached_file():
 
@@ -65,7 +65,7 @@ def attached_file():
         if not os.path.isdir(something):
             print(something)
     time.sleep(3)
-    cleaning
+    cleaning()
 @border_siporaters
 def operating_system():
     print('Имя операционной системы: ' ,platform.system() ,platform.release())
@@ -99,47 +99,47 @@ def osnov_menu():
         cleaning()
 
         if choice == '1':
-            cleaning
+            cleaning()
             new_catalog()
 
         elif choice == '2':
-            cleaning
+            cleaning()
             delete_file()
 
         elif choice == '3':
-            cleaning
+            cleaning()
             copy()
 
         elif choice == '4':
-            cleaning
+            cleaning()
             view_working_directory()
 
         elif choice == '5':
-            cleaning
+            cleaning()
             attached_directory()
 
         elif choice == '6':
-            cleaning
+            cleaning()
             attached_file()
 
 
         elif choice == '7':
-            cleaning
+            cleaning()
             operating_system()
 
 
         elif choice == '8':
-            cleaning
+            cleaning()
             creator_program()
 
         elif choice == '9':
-            cleaning
+            cleaning()
             from victory import *
             print('\n')
             time.sleep(3)
 
         elif choice == '10':
-            cleaning
+            cleaning()
             from use_functions import *  # * обозначает что все модули нужно запускать
 
 
